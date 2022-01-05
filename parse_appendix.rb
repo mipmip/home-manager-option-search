@@ -4,11 +4,12 @@ require 'json'
 require 'pp'
 
 url = 'https://nix-community.github.io/home-manager/options.html'
-html = open(url)
+html = URI.open(url)
 doc = Nokogiri::HTML(html)
 
-
 data = doc.search('dl.variablelist')
+
+outarr = []
 
 data.search('dt').each do |dt|
   dds = dt.xpath("following-sibling::dd[1]")
@@ -49,14 +50,33 @@ data.search('dt').each do |dt|
 
   end
 
-  print "---------------------------------------\n"
-  print "TITLE:\n#{option_title}\n\n"
-  print "DESC:\n#{option_desc}\n\n"
-  print "NOTE:\n#{option_note}\n\n" if option_note != ""
-  print "TYPE:\n#{option_type}\n\n"
-  print "DEFAULT:\n#{option_default}\n\n"
-  print "EXAMPLE:\n#{option_example}\n\n" if option_example != ""
-  print "DECLARED BY:\n#{option_declared_by}\n\n"
-  print "\n"
+#  print "---------------------------------------\n"
+#  print "TITLE:\n#{option_title}\n\n"
+#  print "DESC:\n#{option_desc}\n\n"
+#  print "NOTE:\n#{option_note}\n\n" if option_note != ""
+#  print "TYPE:\n#{option_type}\n\n"
+#  print "DEFAULT:\n#{option_default}\n\n"
+#  print "EXAMPLE:\n#{option_example}\n\n" if option_example != ""
+#  print "DECLARED BY:\n#{option_declared_by}\n\n"
+#  print "\n"
+#
+  outrec = {}
+  outrec["title"] = option_title
+  outrec["description"] = option_desc
+  outrec["note"] = option_note
+  outrec["type"] = option_type
+  outrec["default"] = option_default
+  outrec["example"] = option_example
+  outrec["declared_by"] = option_declared_by
 
+  outarr <<  outrec
+
+end
+
+
+outobj = {}
+outobj["options"] = outarr
+
+File.open("options.json","w") do |f|
+    f.write(outobj.to_json)
 end

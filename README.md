@@ -1,8 +1,15 @@
 # home-manager option search
 
-## TODO
+## Version 1
 
-- finish nokogiri
-- write to json
-- make search front end
-- github actions
+- [x] finish nokogiri
+- [x] write to json
+- [x] make search front end
+  - [ ] no results when nothing entered
+  - [ ] allow enter
+  - [ ] read url
+- [ ] preserve links etc...
+- [ ] cleanup/reorganize
+- [ ] improve style
+- [ ] hugo? page per option
+- [ ] github actions
