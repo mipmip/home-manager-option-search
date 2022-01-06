@@ -68,6 +68,11 @@ var updateOptionsTable = function(options) {
     typeColumn.innerHTML = option.type;
 
     var tableRow = document.createElement('tr');
+
+    var att = document.createAttribute("onClick");
+    att.value = "expandOption(this)";
+    tableRow.setAttributeNode(att);
+
     tableRow.appendChild(titleColumn);
     tableRow.appendChild(descriptionColumn);
     tableRow.appendChild(typeColumn);
@@ -75,6 +80,11 @@ var updateOptionsTable = function(options) {
     indexedOptionsTBody.appendChild(tableRow);
   }
 };
+
+var expandOption = function(el){
+  console.log("expand unknown element");
+  console.log(el);
+}
 
 var updateOptionCountAndTable = function() {
   updateOptionCount(results.length);
