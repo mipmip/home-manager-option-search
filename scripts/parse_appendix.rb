@@ -79,6 +79,6 @@ time = Time.new
 outobj["last_update"] = time.strftime("%B %d, %Y at %k:%M")
 outobj["options"] = outarr
 
-File.open("options.json","w") do |f|
+File.open("data/options.json","w") do |f|
     f.write(outobj.to_json)
 end
