@@ -9,6 +9,7 @@
   - [ ] allow enter
   - [ ] read url
 - [ ] preserve links etc...
+- [ ] onclick show complete listing
 - [ ] cleanup/reorganize
 - [ ] improve style
 - [ ] hugo? page per option
