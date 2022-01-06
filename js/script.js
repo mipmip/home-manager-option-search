@@ -79,8 +79,6 @@ var updateOptionsTable = function(options) {
 };
 
 var expandOption = function(el){
-  console.log("expand unknown element");
-  console.log(currentSet[el]);
 
   modalTitle.innerHTML = currentSet[el].title;
 
