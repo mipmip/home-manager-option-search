@@ -5,7 +5,7 @@
   <title>Home Manager - option search (proto)</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -15,12 +15,19 @@
     <i class="fa fa-github-square"></i>
     <a href="https://github.com/mipmip/home-manager-option-search">https://github.com/mipmip/home-manager-option-search</a>
   </h4>
+  <h4>
+    <i class="fa fa-book"></i>
+    <a href="https://nix-community.github.io/home-manager/options.html">Home Manager options in official documentation</a>
+  </h4>
+
+  <div id="lastUpdateElement"></div>
 
   <ul class="list-inline">
-    <li>Options indexed by:</li>
+    <li>Search in:</li>
     <li><input type="checkbox" checked id="indexOnTitleCheckbox"> Title</li>
     <li><input type="checkbox" checked id="indexOnDescriptionCheckbox"> Description</li>
-    <li>Index strategy:</li>
+
+    <li>Search strategy:</li>
     <li>
       <select id="indexStrategySelect">
         <option value="JsSearch.AllSubstringsIndexStrategy">All substrings</option>
@@ -28,6 +35,7 @@
         <option value="JsSearch.PrefixIndexStrategy" selected>Prefix matching</option>
       </select>
     </li>
+    <!--
     <li><input type="checkbox" id="removeStopWordsCheckbox"> Remove stop words</li>
     <li>Sanitizer:</li>
     <li>
@@ -38,6 +46,7 @@
     </li>
     <li><input type="checkbox" id="useStemmingCheckbox"> Use stemming</li>
     <li><input type="checkbox" id="tfIdfRankingCheckbox" checked> TF-IDF ranking</li>
+    -->
   </p>
 
   <form>
@@ -49,6 +58,7 @@
       <input class="form-control" type="search" id="searchInput" placeholder="Search..">
     </div>
   </form>
+
 
   <table id="indexedOptionsTable" class="table table-striped table-condensed hidden">
     <thead>
@@ -74,6 +84,6 @@
 
 <script type="text/javascript" src="https://rawgit.com/kristopolous/Porter-Stemmer/master/PorterStemmer1980.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/js-search@1.3.7/dist/umd/js-search.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

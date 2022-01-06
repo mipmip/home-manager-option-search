@@ -1,12 +1,13 @@
 var search, results, allOptions = [];
+var lastUpdate = "?";
 
 var indexOnDescriptionCheckbox = document.getElementById('indexOnDescriptionCheckbox');
-var indexStrategySelect = document.getElementById('indexStrategySelect');
-var removeStopWordsCheckbox = document.getElementById('removeStopWordsCheckbox');
+//var indexStrategySelect = document.getElementById('indexStrategySelect');
+//var removeStopWordsCheckbox = document.getElementById('removeStopWordsCheckbox');
 var indexOnTitleCheckbox = document.getElementById('indexOnTitleCheckbox');
-var useStemmingCheckbox = document.getElementById('useStemmingCheckbox');
-var sanitizerSelect = document.getElementById('sanitizerSelect');
-var tfIdfRankingCheckbox = document.getElementById('tfIdfRankingCheckbox');
+//var useStemmingCheckbox = document.getElementById('useStemmingCheckbox');
+//var sanitizerSelect = document.getElementById('sanitizerSelect');
+//var tfIdfRankingCheckbox = document.getElementById('tfIdfRankingCheckbox');
 
 var rebuildAndRerunSearch = function() {
   rebuildSearchIndex();
@@ -14,41 +15,50 @@ var rebuildAndRerunSearch = function() {
 };
 
 indexOnDescriptionCheckbox.onchange = rebuildAndRerunSearch;
-indexStrategySelect.onchange = rebuildAndRerunSearch;
-removeStopWordsCheckbox.onchange = rebuildAndRerunSearch;
+//indexStrategySelect.onchange = rebuildAndRerunSearch;
+//removeStopWordsCheckbox.onchange = rebuildAndRerunSearch;
 indexOnTitleCheckbox.onchange = rebuildAndRerunSearch;
-useStemmingCheckbox.onchange = rebuildAndRerunSearch;
-sanitizerSelect.onchange = rebuildAndRerunSearch;
-tfIdfRankingCheckbox.onchange = rebuildAndRerunSearch;
+//useStemmingCheckbox.onchange = rebuildAndRerunSearch;
+//sanitizerSelect.onchange = rebuildAndRerunSearch;
+//tfIdfRankingCheckbox.onchange = rebuildAndRerunSearch;
 
 var rebuildSearchIndex = function() {
   search = new JsSearch.Search('description');
 
+  /*
   if (useStemmingCheckbox.checked) {
     search.tokenizer = new JsSearch.StemmingTokenizer(stemmer, search.tokenizer);
   }
   if (removeStopWordsCheckbox.checked) {
     search.tokenizer = new JsSearch.StopWordsTokenizer(search.tokenizer);
   }
+  */
 
   search.indexStrategy =  eval('new ' + indexStrategySelect.value + '()');
-  search.sanitizer =  eval('new ' + sanitizerSelect.value + '()');;
+  //search.sanitizer =  eval('new ' + sanitizerSelect.value + '()');;
 
   search.searchIndex = new JsSearch.UnorderedSearchIndex();
 
   if (indexOnTitleCheckbox.checked) {
     search.addIndex('title');
   }
+  if (indexOnDescriptionCheckbox.checked) {
+    search.addIndex('description');
+  }
 
-  search.addIndex('description');
 
   search.addDocuments(allOptions);
 };
 
 var indexedOptionsTable = document.getElementById('indexedOptionsTable');
+var lastUpdateElement = document.getElementById('lastUpdateElement');
 var indexedOptionsTBody = indexedOptionsTable.tBodies[0];
 var searchInput = document.getElementById('searchInput');
 var optionCountBadge = document.getElementById('optionCountBadge');
+
+var updateLastUpdate = function(lastUpdate) {
+  lastUpdateElement.innerHTML = 'Last update: '+ lastUpdate;
+};
 
 var updateOptionsTable = function(options) {
   indexedOptionsTBody.innerHTML = '';
@@ -122,6 +132,7 @@ xmlhttp.onreadystatechange = function() {
     var json = JSON.parse(xmlhttp.responseText);
 
     allOptions = json.options;
+    lastUpdate = json.last_update;
 
     updateOptionCount(allOptions.length);
 
@@ -131,7 +142,8 @@ xmlhttp.onreadystatechange = function() {
 
     rebuildSearchIndex();
     updateOptionsTable(allOptions);
+    updateLastUpdate(lastUpdate);
   }
 }
-xmlhttp.open('GET', 'options.json', true);
+xmlhttp.open('GET', 'data/options.json', true);
 xmlhttp.send();
