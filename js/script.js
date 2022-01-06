@@ -1,13 +1,11 @@
-var search, results, allOptions = [];
+var search, results, allOptions, currentSet = [];
 var lastUpdate = "?";
 
 var indexOnDescriptionCheckbox = document.getElementById('indexOnDescriptionCheckbox');
-//var indexStrategySelect = document.getElementById('indexStrategySelect');
-//var removeStopWordsCheckbox = document.getElementById('removeStopWordsCheckbox');
 var indexOnTitleCheckbox = document.getElementById('indexOnTitleCheckbox');
-//var useStemmingCheckbox = document.getElementById('useStemmingCheckbox');
-//var sanitizerSelect = document.getElementById('sanitizerSelect');
-//var tfIdfRankingCheckbox = document.getElementById('tfIdfRankingCheckbox');
+
+var modalTitle = document.getElementById('myModalLabel');
+var modalBody = document.getElementById('myModalBody');
 
 var rebuildAndRerunSearch = function() {
   rebuildSearchIndex();
@@ -15,28 +13,13 @@ var rebuildAndRerunSearch = function() {
 };
 
 indexOnDescriptionCheckbox.onchange = rebuildAndRerunSearch;
-//indexStrategySelect.onchange = rebuildAndRerunSearch;
-//removeStopWordsCheckbox.onchange = rebuildAndRerunSearch;
 indexOnTitleCheckbox.onchange = rebuildAndRerunSearch;
-//useStemmingCheckbox.onchange = rebuildAndRerunSearch;
-//sanitizerSelect.onchange = rebuildAndRerunSearch;
-//tfIdfRankingCheckbox.onchange = rebuildAndRerunSearch;
+indexStrategySelect.onchange = rebuildAndRerunSearch;
 
 var rebuildSearchIndex = function() {
   search = new JsSearch.Search('description');
 
-  /*
-  if (useStemmingCheckbox.checked) {
-    search.tokenizer = new JsSearch.StemmingTokenizer(stemmer, search.tokenizer);
-  }
-  if (removeStopWordsCheckbox.checked) {
-    search.tokenizer = new JsSearch.StopWordsTokenizer(search.tokenizer);
-  }
-  */
-
   search.indexStrategy =  eval('new ' + indexStrategySelect.value + '()');
-  //search.sanitizer =  eval('new ' + sanitizerSelect.value + '()');;
-
   search.searchIndex = new JsSearch.UnorderedSearchIndex();
 
   if (indexOnTitleCheckbox.checked) {
@@ -45,7 +28,6 @@ var rebuildSearchIndex = function() {
   if (indexOnDescriptionCheckbox.checked) {
     search.addIndex('description');
   }
-
 
   search.addDocuments(allOptions);
 };
@@ -62,6 +44,7 @@ var updateLastUpdate = function(lastUpdate) {
 
 var updateOptionsTable = function(options) {
   indexedOptionsTBody.innerHTML = '';
+  currentSet = options;
 
   var tokens = search.tokenizer.tokenize(searchInput.value);
 
@@ -80,7 +63,7 @@ var updateOptionsTable = function(options) {
     var tableRow = document.createElement('tr');
 
     var att = document.createAttribute("onClick");
-    att.value = "expandOption(this)";
+    att.value = "expandOption("+i+")";
     tableRow.setAttributeNode(att);
 
     var att2 = document.createAttribute("style");
@@ -97,7 +80,24 @@ var updateOptionsTable = function(options) {
 
 var expandOption = function(el){
   console.log("expand unknown element");
-  console.log(el);
+  console.log(currentSet[el]);
+
+  modalTitle.innerHTML = currentSet[el].title;
+
+  var elDesc = "<h5 style='margin:1em 0 0 0'>Description</h5><div>" + currentSet[el].description + "</div>";
+  var elType = "<h5 style='margin:1em 0 0 0'>Type</h5><div>" + currentSet[el].type + "</div>";
+  var elNote = ( currentSet[el].note == "" ? "": "<h5 style='margin:1em 0 0 0'>Type</h5><div>" + currentSet[el].note + "</div>");
+  var elDefault = "<h5 style='margin:1em 0 0 0'>Default</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].default + "</pre></div>";
+  var elExample = ( currentSet[el].example == "" ? "" : "<h5 style='margin:1em 0 0 0'>Example</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].example + "</pre></div>");
+
+  var declared_by_str = String(currentSet[el].declared_by).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, '<br>');
+
+
+  var elDeclaredBy = "<h5 style='margin:1em 0 0 0'>Declared by</h5><div>" + declared_by_str+ "</div>";
+  modalBody.innerHTML = elDesc + elNote + elType + elDefault + elExample + elDeclaredBy;
+
+
+  $('#myModal').modal('show')
 }
 
 var updateOptionCountAndTable = function() {

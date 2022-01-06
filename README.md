@@ -16,18 +16,18 @@ Find home manager options quickly.
   - [x] commit
 - [x] bug <name> filtered out
 - [x] improve style
-
-- [ ] onclick show complete listing
-- [ ] preserve links etc...
-- [ ] cleanup/reorganize
-- [ ] logo
+- [x] cleanup/reorganize
+- [x] logo
 - [x] footer/header like the NUR
+- [x] stats
+- [x] onclick show complete listing
 
 ### Next version
+- [ ] preserve links in declared_by
 - [ ] search improvements
   - [ ] no results when nothing entered
   - [ ] allow enter
-  - [ ] read url
+  - [ ] read url query string
 
 
 ## Contribute
@@ -37,4 +37,5 @@ Find home manager options quickly.
 ## Credits
 
 - Powered by the [Nix Community](https://nix-community.org/)
-- HTML inspired by the [DocDock](https://docdock.vjeantet.fr/) Hugo Theme.
+- [JS Search](https://github.com/bvaughn/js-search), efficient, client-side search library for JavaScript and JSON objects
+- Header inspired by the [DocDock](https://docdock.vjeantet.fr/) Hugo Theme.
