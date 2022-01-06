@@ -18,7 +18,7 @@ var searchEnter = function() {
   console.log(window.location.href);
   if(searchInput.value !== ""){
 
-    newurl = window.location.href.split('?')[0]+"?"+searchInput.value;
+    newurl = window.location.href.split('?')[0]+"?"+searchInput.value.trim();
     console.log(newurl);
 
     window.location.href = encodeURI(newurl);
@@ -33,7 +33,7 @@ var docOnload = function(){
     searchInput.value = queryString;
   }
 
-  if(queryString!==""){
+  if(queryString !== ""){
     searchOptions();
   }
 }
@@ -174,9 +174,12 @@ xmlhttp.onreadystatechange = function() {
     showElement(indexedOptionsTable);
 
     rebuildSearchIndex();
-    if(searchInput.value ==""){
+    docOnload();
+    if(searchInput.value.trim() ==""){
       updateOptionsTable(allOptions);
     }
+
+
   }
 }
 xmlhttp.open('GET', 'data/options.json', true);
