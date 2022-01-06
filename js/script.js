@@ -83,6 +83,10 @@ var updateOptionsTable = function(options) {
     att.value = "expandOption(this)";
     tableRow.setAttributeNode(att);
 
+    var att2 = document.createAttribute("style");
+    att2.value = "overflow-wrap: break-word";
+    titleColumn.setAttributeNode(att2);
+
     tableRow.appendChild(titleColumn);
     tableRow.appendChild(descriptionColumn);
     tableRow.appendChild(typeColumn);

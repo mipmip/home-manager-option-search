@@ -14,7 +14,8 @@ outarr = []
 data.search('dt').each do |dt|
   dds = dt.xpath("following-sibling::dd[1]")
 
-  option_title = dt.text
+  option_title = dt.css("span a code").inner_html
+
   option_desc = ""
   option_note = ""
   option_type = ""
@@ -51,7 +52,7 @@ data.search('dt').each do |dt|
   end
 
 #  print "---------------------------------------\n"
-#  print "TITLE:\n#{option_title}\n\n"
+  print "TITLE:\n#{option_title}\n\n"
 #  print "DESC:\n#{option_desc}\n\n"
 #  print "NOTE:\n#{option_note}\n\n" if option_note != ""
 #  print "TYPE:\n#{option_type}\n\n"
