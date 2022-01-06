@@ -5,3 +5,6 @@ mark {
     padding: 2px;
     margin: -2px;
 }
+table tr td {
+  overflow-wrap: break-word !important;
+}

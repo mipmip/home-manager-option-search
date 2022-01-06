@@ -2,25 +2,39 @@
 
 Find home manager options quickly.
 
-## Version 1
+## TODO
+
+### Version 1
 
 - [x] finish nokogiri
 - [x] write to json
 - [x] make search front end
 - [x] write last updated
 - [x] reference to home manager and appendix page
-- [ ] github actions
-  - [ ] run
-  - [ ] commit
+- [x] github actions
+  - [x] run
+  - [x] commit
+- [x] bug <name> filtered out
+- [x] improve style
+
 - [ ] onclick show complete listing
 - [ ] preserve links etc...
-
-## Next version
 - [ ] cleanup/reorganize
-- [ ] improve style
+- [ ] logo
+- [x] footer/header like the NUR
+
+### Next version
 - [ ] search improvements
   - [ ] no results when nothing entered
   - [ ] allow enter
   - [ ] read url
-- [ ] footer/header like the NUR
-- [ ] hugo? page per option
+
+
+## Contribute
+
+- Please use the issue tracker of fork this site for PR's
+
+## Credits
+
+- Powered by the [Nix Community](https://nix-community.org/)
+- HTML inspired by the [DocDock](https://docdock.vjeantet.fr/) Hugo Theme.
