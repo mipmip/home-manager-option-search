@@ -16,12 +16,12 @@ Find home manager options quickly.
   - [x] commit
 - [x] bug <name> filtered out
 - [x] improve style
-
+- [x] cleanup/reorganize
+- [x] logo
+- [x] footer/header like the NUR
 - [ ] onclick show complete listing
 - [ ] preserve links etc...
-- [ ] cleanup/reorganize
-- [ ] logo
-- [x] footer/header like the NUR
+- [ ] stats
 
 ### Next version
 - [ ] search improvements
