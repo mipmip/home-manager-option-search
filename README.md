@@ -4,31 +4,10 @@ Find home manager options quickly.
 
 ## TODO
 
-### Version 1
-
-- [x] finish nokogiri
-- [x] write to json
-- [x] make search front end
-- [x] write last updated
-- [x] reference to home manager and appendix page
-- [x] github actions
-  - [x] run
-  - [x] commit
-- [x] bug <name> filtered out
-- [x] improve style
-- [x] cleanup/reorganize
-- [x] logo
-- [x] footer/header like the NUR
-- [x] stats
-- [x] onclick show complete listing
-
 ### Next version
-- [ ] preserve links in declared_by
-- [ ] search improvements
-  - [ ] no results when nothing entered
-  - [ ] allow enter
-  - [ ] read url query string
 
+- [ ] preserve links in declared_by
+- [ ] github action parser working?
 
 ## Contribute
 
