@@ -52,7 +52,7 @@ data.search('dt').each do |dt|
   end
 
 #  print "---------------------------------------\n"
-  print "TITLE:\n#{option_title}\n\n"
+#  print "TITLE:\n#{option_title}\n\n"
 #  print "DESC:\n#{option_desc}\n\n"
 #  print "NOTE:\n#{option_note}\n\n" if option_note != ""
 #  print "TYPE:\n#{option_type}\n\n"
@@ -83,3 +83,5 @@ outobj["options"] = outarr
 File.open("data/options.json","w") do |f|
     f.write(outobj.to_json)
 end
+
+print "Finished parsing home manager options."

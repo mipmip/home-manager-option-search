@@ -12,6 +12,32 @@ var rebuildAndRerunSearch = function() {
   searchOptions();
 };
 
+var searchEnter = function() {
+  event.preventDefault();
+
+  console.log(window.location.href);
+  if(searchInput.value !== ""){
+
+    newurl = window.location.href.split('?')[0]+"?"+searchInput.value;
+    console.log(newurl);
+
+    window.location.href = encodeURI(newurl);
+
+  }
+}
+
+var docOnload = function(){
+  var queryString = "";
+  if(window.location.href.includes("?")){
+    queryString = decodeURI(window.location.href.split('?')[1]);
+    searchInput.value = queryString;
+  }
+
+  if(queryString!==""){
+    searchOptions();
+  }
+}
+
 indexOnDescriptionCheckbox.onchange = rebuildAndRerunSearch;
 indexOnTitleCheckbox.onchange = rebuildAndRerunSearch;
 indexStrategySelect.onchange = rebuildAndRerunSearch;
@@ -66,6 +92,11 @@ var updateOptionsTable = function(options) {
     att.value = "expandOption("+i+")";
     tableRow.setAttributeNode(att);
 
+    var att1 = document.createAttribute("class");
+    att1.value = "optrow";
+    tableRow.setAttributeNode(att1);
+
+
     var att2 = document.createAttribute("style");
     att2.value = "overflow-wrap: break-word";
     titleColumn.setAttributeNode(att2);
@@ -89,7 +120,6 @@ var expandOption = function(el){
   var elExample = ( currentSet[el].example == "" ? "" : "<h5 style='margin:1em 0 0 0'>Example</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].example + "</pre></div>");
 
   var declared_by_str = String(currentSet[el].declared_by).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, '<br>');
-
 
   var elDeclaredBy = "<h5 style='margin:1em 0 0 0'>Declared by</h5><div>" + declared_by_str+ "</div>";
   modalBody.innerHTML = elDesc + elNote + elType + elDefault + elExample + elDeclaredBy;
@@ -135,6 +165,7 @@ xmlhttp.onreadystatechange = function() {
 
     allOptions = json.options;
     lastUpdate = json.last_update;
+    updateLastUpdate(lastUpdate);
 
     updateOptionCount(allOptions.length);
 
@@ -143,8 +174,9 @@ xmlhttp.onreadystatechange = function() {
     showElement(indexedOptionsTable);
 
     rebuildSearchIndex();
-    updateOptionsTable(allOptions);
-    updateLastUpdate(lastUpdate);
+    if(searchInput.value ==""){
+      updateOptionsTable(allOptions);
+    }
   }
 }
 xmlhttp.open('GET', 'data/options.json', true);
