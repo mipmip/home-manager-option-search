@@ -18,4 +18,8 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
           ruby scripts/parse_appendix.rb
-          bash scripts/commitpush.sh
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
