@@ -8,6 +8,9 @@ Find home manager options quickly.
 
 - [ ] preserve links in declared_by
 - [ ] github action parser working?
+- [ ] favicon
+- [ ] community repo
+- [ ] remove proto from title
 
 ## Contribute
 
