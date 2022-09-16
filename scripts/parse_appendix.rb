@@ -44,8 +44,23 @@ data.search('dt').each do |dt|
         declared = ch.xpath("following-sibling::table[1]")
         option_declared_by = declared.text.strip.gsub(/\s+/, "\n")
       elsif ch.text[0..7] == "Example:"
+
+#        if option_title.include? "urxvt.extraConfig" or option_title.include? "vim.extraConfig"
+#          p option_title.upcase
+#          #PP.pp ch
+#          p "---"
+#          #PP.pp ch.xpath("following-sibling::pre[1]")
+#          #PP.pp ch.xpath("following-sibling")
+#          p
+#
+#          PP.pp ch.xpath("code").text
+#        end
         example = ch.xpath("following-sibling::pre[1]")
-        option_example = example.text
+        if example.length > 0
+          option_example = example.text
+        else
+          option_example = ch.xpath("code").text
+        end
       end
     end
 
