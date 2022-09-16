@@ -22,7 +22,11 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
-      - run: ruby scripts/parse_appendix.rb
+      - run: |
+          rm -v data/options.json
+          ruby scripts/parse_appendix.rb
+          ls -al data/options.json
+          cat data/options.json | jq ".last_update"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
