@@ -206,8 +206,10 @@ body {
 :disabled {
   pointer-events: none; }
 
-a {
-  color: inherit; }
+a,
+a:visited{
+  color: #5278be;
+}
 
 a:focus {
   outline: 0; }
