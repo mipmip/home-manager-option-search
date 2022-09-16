@@ -1,16 +1,16 @@
-# home-manager option search
+# Nix Home Manager Option Search
 
 Find home manager options quickly.
+
+![](images/homemanageroptionsearch.gif)
 
 ## TODO
 
 ### Next version
 
-- [ ] preserve links in declared_by
-- [ ] github action parser working?
-- [ ] favicon
 - [ ] community repo
-- [ ] remove proto from title
+- [ ] port to MUI.com
+- [ ] be aware of multiple home manager versions
 
 ## Contribute
 

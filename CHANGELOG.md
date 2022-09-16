@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## Version 1.2
+
+- preserve links in declared_by
+- add favicon
+- show example when in `<code>` element
+- remove proto from title
+- github action parser working
+
 ## Version 1.1
 
 - [x] hover plus handicon row
