@@ -22,6 +22,7 @@ data.search('dt').each do |dt|
   option_default = ""
   option_example = ""
   option_declared_by = ""
+  option_declared_by_link = ""
 
   i = 0
   dds.children.each do | ch |
@@ -43,18 +44,20 @@ data.search('dt').each do |dt|
       elsif ch.text[0..11] == "Declared by:"
         declared = ch.xpath("following-sibling::table[1]")
         option_declared_by = declared.text.strip.gsub(/\s+/, "\n")
-      elsif ch.text[0..7] == "Example:"
+        declare_arr = option_declared_by.split("\n")
 
-#        if option_title.include? "urxvt.extraConfig" or option_title.include? "vim.extraConfig"
-#          p option_title.upcase
-#          #PP.pp ch
-#          p "---"
-#          #PP.pp ch.xpath("following-sibling::pre[1]")
-#          #PP.pp ch.xpath("following-sibling")
-#          p
-#
-#          PP.pp ch.xpath("code").text
-#        end
+        option_declared_by_link = ""
+        decllink = ""
+        if declare_arr.length > 1
+          p option_title.upcase
+          p declare_arr
+        end
+        declare_arr.each do | decl |
+          decllink = 'https://github.com/nix-community/home-manager/blob/master/' + decl.gsub('<home-manager/','').gsub('>','')
+          decltext = decl.gsub('<','').gsub('>','')
+          option_declared_by_link += '<a href="'+decllink+'">'+decltext+'</a><br/>'
+        end
+      elsif ch.text[0..7] == "Example:"
         example = ch.xpath("following-sibling::pre[1]")
         if example.length > 0
           option_example = example.text
@@ -83,7 +86,7 @@ data.search('dt').each do |dt|
   outrec["type"] = option_type
   outrec["default"] = option_default
   outrec["example"] = option_example
-  outrec["declared_by"] = option_declared_by
+  outrec["declared_by"] = option_declared_by_link
 
   outarr <<  outrec
 

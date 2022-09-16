@@ -119,7 +119,7 @@ var expandOption = function(el){
   var elDefault = "<h5 style='margin:1em 0 0 0'>Default</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].default + "</pre></div>";
   var elExample = ( currentSet[el].example == "" ? "" : "<h5 style='margin:1em 0 0 0'>Example</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].example + "</pre></div>");
 
-  var declared_by_str = String(currentSet[el].declared_by).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, '<br>');
+  var declared_by_str = currentSet[el].declared_by;
 
   var elDeclaredBy = "<h5 style='margin:1em 0 0 0'>Declared by</h5><div>" + declared_by_str+ "</div>";
   modalBody.innerHTML = elDesc + elNote + elType + elDefault + elExample + elDeclaredBy;
