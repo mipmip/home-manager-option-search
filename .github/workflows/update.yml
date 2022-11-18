@@ -16,8 +16,12 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0
-          bundler-cache: true
-
+          #bundler-cache: true
+      
+      - run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          
       - run: |
           rm -v data/options.json
           ruby scripts/parse_appendix.rb
