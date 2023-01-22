@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+## Version 1.3
+
+- new logo
+- remove animations
+- sticky search field
+- sticky table headers
+- sticky footer
+- hide advanced search options
+- change menu items
+- multiple minor layout changes
+
 ## Version 1.2
 
 - preserve links in declared_by
