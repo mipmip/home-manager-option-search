@@ -36,6 +36,9 @@ var docOnload = function(){
   if(queryString !== ""){
     searchOptions();
   }
+
+  $("#advcheck").prop("checked", false);
+//  $("#advcheck").removeAttr("checked");
 }
 
 indexOnDescriptionCheckbox.onchange = rebuildAndRerunSearch;
@@ -59,6 +62,7 @@ var rebuildSearchIndex = function() {
 };
 
 var indexedOptionsTable = document.getElementById('indexedOptionsTable');
+var indexedOptionsTableHeader = document.getElementById('indexedOptionsTableHeader');
 var lastUpdateElement = document.getElementById('lastUpdateElement');
 var indexedOptionsTBody = indexedOptionsTable.tBodies[0];
 var searchInput = document.getElementById('searchInput');
@@ -172,6 +176,7 @@ xmlhttp.onreadystatechange = function() {
     var loadingProgressBar = document.getElementById('loadingProgressBar');
     hideElement(loadingProgressBar);
     showElement(indexedOptionsTable);
+    showElement(indexedOptionsTableHeader);
 
     rebuildSearchIndex();
     docOnload();

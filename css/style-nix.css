@@ -55,6 +55,7 @@ header {
   header a {
     text-decoration: none; }
   header .logo {
+    min-width: 295px;
     font-size: 100%; }
     header .logo * {
       vertical-align: middle; }
@@ -75,11 +76,18 @@ header {
     header nav.shortcuts li .fa {
       font-size: 1.5rem;
       margin-right: 0.5rem; }
+    header nav.shortcuts li a{
+      color: #e6e8ed;
+    }
     header nav.shortcuts li a:active,
     header nav.shortcuts li a:focus,
     header nav.shortcuts li a:hover {
-      background-color: #5276c2 }
+      background-color: #5276c2;
+      color: #e6e8ed;
+      text-decoration: none;
+    }
     header nav.shortcuts li a {
+      font-size: smaller;
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
@@ -184,7 +192,8 @@ article > aside {
 
 html,
 body {
-  height: 100%; }
+  height: 100%; 
+}
 
 html {
   font-family: 'Roboto', sans-serif;
@@ -193,7 +202,7 @@ html {
 
 body {
   background-color: #fff;
-  color: #222;
+  color: #555;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -290,6 +299,13 @@ section strong {
 
 .burger {
   display: none; }
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+  background-color: #f1f5f9;
+}
+table tr.optrow:hover {
+  background-color: #f1f5f9 !important;
+}
 
 article {
   display: -webkit-box;
@@ -555,15 +571,15 @@ h6:hover .anchor {
   border-right-color: rgba(0, 0, 0, 0.8); }
 
 footer {
+  text-align:center;
   color: #666;
   background-color: #d3e7f6;
-  font-size: .95rem;
-  padding: 1rem 4rem;
+  font-size: smaller;
+  padding: 2px; 4rem 6px 4rem;
   border-top: 1px solid #a3d3f6;
 }
-footer a{
+footer a:hover {
   text-decoration: underline !important;
-
 }
   footer p {
     margin: 0px; }
@@ -745,3 +761,21 @@ table.nur-stats tr td{
   width: 1px !important;
 }
 
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+/*
+table {
+    text-align: left;
+      position: relative;
+        border-collapse: collapse; 
+      }
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+*/
