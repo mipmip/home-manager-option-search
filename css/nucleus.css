@@ -179,7 +179,8 @@ th {
 .container {
   width: 75em;
   margin: 0 auto;
-  padding: 0; }
+  padding: 0;
+  padding-bottom: 47px; }
   @media only all and (min-width: 60em) and (max-width: 74.938em) {
     .container {
       width: 60em; } }
