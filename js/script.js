@@ -12,30 +12,11 @@ var rebuildAndRerunSearch = function() {
   searchOptions();
 };
 
-var searchEnter = function() {
-  event.preventDefault();
-
-  console.log(window.location.href);
-  if(searchInput.value !== ""){
-
-    newurl = window.location.href.split('?')[0]+"?"+searchInput.value.trim();
-    console.log(newurl);
-
-    window.location.href = encodeURI(newurl);
-
-  }
-}
-
 var docOnload = function(){
-  var queryString = "";
-  if(window.location.href.includes("?")){
-    queryString = decodeURI(window.location.href.split('?')[1]);
-    searchInput.value = queryString;
-  }
-
-  if(queryString !== ""){
-    searchOptions();
-  }
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('query');
+  searchInput.value = query;
+  searchOptions(query);
 
   $("#advcheck").prop("checked", false);
 //  $("#advcheck").removeAttr("checked");
@@ -145,12 +126,23 @@ var updateOptionCountAndTable = function() {
   }
 };
 
-var searchOptions = function() {
-  results = search.search(searchInput.value);
+var setSearchQueryToUrlParam = function(query) {
+  const urlParams = new URLSearchParams();
+  urlParams.set('query', query);
+  const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+  window.history.replaceState({}, '', newUrl);
+};
+
+var searchOptions = function(query) {
+  results = search.search(query);
   updateOptionCountAndTable();
 };
 
-searchInput.oninput = searchOptions;
+searchInput.oninput =  function () {
+  const query = searchInput.value;
+  setSearchQueryToUrlParam(query);
+  searchOptions(query);
+}
 
 var updateOptionCount = function(numOptions) {
   optionCountBadge.innerText = numOptions + ' options';
