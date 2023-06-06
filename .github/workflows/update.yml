@@ -2,7 +2,6 @@ name: "parse and deploy"
 on:
   schedule:
     - cron:  '05 4 * * *'
-  pull_request:
   push:
 
 jobs:
@@ -17,11 +16,11 @@ jobs:
         with:
           ruby-version: 2.7
           #bundler-cache: true
-      
+
       - run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-          
+
       - run: |
           rm -v data/options.json
           ruby scripts/parse_appendix.rb
