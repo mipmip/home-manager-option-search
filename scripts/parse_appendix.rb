@@ -28,7 +28,7 @@ data.search('dt').each do |dt|
   dds.children.each do | ch |
     i+=1
     if i == 1
-      option_desc = ch.text.strip.gsub("\n","")
+      option_desc = ch.text.strip.gsub("\n"," ")
     elsif i == 2
       if ch.text[0..4] == "Type:"
         option_type = ch.text[5..-1].strip
@@ -95,7 +95,7 @@ end
 
 outobj = {}
 time = Time.new
-outobj["last_update"] = time.strftime("%B %d, %Y at %k:%M")
+outobj["last_update"] = time.utc.strftime("%B %d, %Y at %k:%M UTC")
 outobj["options"] = outarr
 
 File.open("data/options.json","w") do |f|
