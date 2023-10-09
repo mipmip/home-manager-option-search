@@ -67,6 +67,7 @@ var updateOptionsTable = function(options) {
 
     var descriptionColumn = document.createElement('td');
     descriptionColumn.innerHTML = option.description;
+    descriptionColumn.classList.add("phonehide");
 
     var typeColumn = document.createElement('td');
     typeColumn.innerHTML = option.type;
