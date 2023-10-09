@@ -18,3 +18,8 @@ table tr.optrow {
 }
 
 
+@media only screen and (max-width: 1026px) {
+  .phonehide {
+    display: none;
+  }
+}
