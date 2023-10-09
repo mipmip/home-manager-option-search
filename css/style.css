@@ -17,8 +17,21 @@ table tr.optrow {
   cursor: pointer;
 }
 
+#lastUpdateElement{
+  font-size: 10px;
+}
+
 
 @media only screen and (max-width: 1026px) {
+  body {
+    font-size: 130%;
+  }
+  .form-control {
+    font-size: 120%;
+  }
+  #lastUpdateElement{
+    font-size: 12px;
+  }
   .phonehide {
     display: none;
   }
