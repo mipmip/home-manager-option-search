@@ -140,11 +140,19 @@ var searchOptions = function(query) {
   updateOptionCountAndTable();
 };
 
-searchInput.oninput =  function () {
-  const query = searchInput.value;
-  setSearchQueryToUrlParam(query);
-  searchOptions(query);
-}
+const SEARCH_INPUT_DEBOUNCE_MS = 100;
+
+let debounceTimer;
+
+searchInput.oninput = function() {
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(() => {
+    const query = searchInput.value;
+    setSearchQueryToUrlParam(query);
+    searchOptions(query);
+  }, SEARCH_INPUT_DEBOUNCE_MS);
+};
 
 var updateOptionCount = function(numOptions) {
   optionCountBadge.innerText = numOptions + ' options';
