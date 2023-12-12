@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next
+
+- featuring dark mode
+- fix parsing bug causing wrong search results
 
 ## Version 1.3
 
