@@ -27,7 +27,7 @@ indexOnTitleCheckbox.onchange = rebuildAndRerunSearch;
 indexStrategySelect.onchange = rebuildAndRerunSearch;
 
 var rebuildSearchIndex = function() {
-  search = new JsSearch.Search('description');
+  search = new JsSearch.Search('title');
 
   search.indexStrategy =  eval('new ' + indexStrategySelect.value + '()');
   search.searchIndex = new JsSearch.UnorderedSearchIndex();

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Home Manager - Option Search</title>
+
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -18,7 +19,7 @@
   <body>
 
     <header>
-      <div id="lastUpdateElement" style="position:absolute; line-height: 11px;color: #000; right: 37px;top:59px;"></div>
+      <div id="lastUpdateElement" style="position:absolute; line-height: 11px; right: 37px;top:59px;"></div>
       <div class="logo">
         <a class="baselink" href="./"> <img src="images/home-manager-option-search2.png"></a>
       </div>
@@ -62,7 +63,7 @@
         </div>
       </div>
 
-      <div id="searchform" style="background-color: white;top:54px;position:sticky;>
+      <div id="searchform" xstyle="background-color: white;top:54px;position:sticky;>
         <form method="get" action="?" onSubmit="searchEnter()">
           <div class="form-group">
             <label for="searchInput">
@@ -80,7 +81,7 @@
           </div>
         </form>
 
-        <div class="collapse" id="advanced" style="background-color: #efefef ;padding:2px;">
+        <div class="collapse" id="advanced" >
           <ul class="list-inline" style="margin-top:5px;margin-bottom:5px;">
             <li>Search in</li>
             <li><input type="checkbox" checked id="indexOnTitleCheckbox"> Title</li>
@@ -150,7 +151,8 @@
     </footer>
 
     <!--<script type="text/javascript" src="https://rawgit.com/kristopolous/Porter-Stemmer/master/PorterStemmer1980.min.js"></script>-->
-    <script type="text/javascript" src="https://unpkg.com/js-search@1.3.7/dist/umd/js-search.min.js"></script>
+    <!--<script type="text/javascript" src="https://unpkg.com/js-search@1.3.7/dist/umd/js-search.min.js"></script>-->
+    <script type="text/javascript" src="https://unpkg.com/js-search@2.0.1/dist/umd/js-search.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
   </body>
 </html>
