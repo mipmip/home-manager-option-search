@@ -4,7 +4,12 @@ require 'json'
 require 'pp'
 
 url = 'https://nix-community.github.io/home-manager/options.html'
-html = URI.open(url)
+html=""
+URI.open(url) do |f|
+  html = f.read
+end
+html.gsub!("\n","")
+
 doc = Nokogiri::HTML(html)
 
 data = doc.search('dl.variablelist')
@@ -27,6 +32,7 @@ data.search('dt').each do |dt|
   i = 0
   dds.children.each do | ch |
     i+=1
+    p i.to_s + " " + ch.text
     if i == 1
       option_desc = ch.text.strip.gsub("\n"," ")
     elsif i == 2
@@ -70,8 +76,8 @@ data.search('dt').each do |dt|
   end
 
 #  print "---------------------------------------\n"
-#  print "TITLE:\n#{option_title}\n\n"
-#  print "DESC:\n#{option_desc}\n\n"
+  print "TITLE:\n#{option_title}\n\n"
+  print "DESC:\n#{option_desc}\n\n"
 #  print "NOTE:\n#{option_note}\n\n" if option_note != ""
 #  print "TYPE:\n#{option_type}\n\n"
 #  print "DEFAULT:\n#{option_default}\n\n"
