@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next
+## Version 1.4
 
 - featuring dark mode
 - fix parsing bug causing wrong search results
