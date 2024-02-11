@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'json'
 require 'pp'
 
-url = 'https://nix-community.github.io/home-manager/options.html'
+url = 'https://nix-community.github.io/home-manager/options.xhtml'
 html=""
 URI.open(url) do |f|
   html = f.read

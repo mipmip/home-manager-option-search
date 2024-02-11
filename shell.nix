@@ -1,7 +1,7 @@
 with (import <nixpkgs> {});
 mkShell {
   buildInputs = [
-    ruby_2_7
+    ruby_3_3
   ];
   shellHook = ''
     mkdir -p .nix-gems
