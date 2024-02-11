@@ -14,7 +14,7 @@ Find home manager options quickly.
 
 ## Contribute
 
-- Please use the issue tracker of fork this site for PR's
+- Please use the issue tracker or fork this site for PR's
 
 ## Credits
 
