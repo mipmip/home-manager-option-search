@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Next version
+
+- keyboard (tab) navigation (thanks to github.com/hallundbaek)
+- better result sorting (thanks to github.com/hallundbaek)
+- style improvements
+
 ## Version 1.4
 
 - featuring dark mode
