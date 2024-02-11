@@ -83,10 +83,19 @@ var updateOptionsTable = function(options) {
     att1.value = "optrow";
     tableRow.setAttributeNode(att1);
 
+    var att2 = document.createAttribute("tabindex");
+    att2.value = "0";
+    tableRow.setAttributeNode(att2);
 
-    var att2 = document.createAttribute("style");
-    att2.value = "overflow-wrap: break-word";
-    titleColumn.setAttributeNode(att2);
+    tableRow.onkeydown = function(e) {
+      if (e.keyCode == 13) {
+        tableRow.click();
+      };
+    };
+
+    var att3 = document.createAttribute("style");
+    att3.value = "overflow-wrap: break-word";
+    titleColumn.setAttributeNode(att3);
 
     tableRow.appendChild(titleColumn);
     tableRow.appendChild(descriptionColumn);
