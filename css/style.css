@@ -9,8 +9,11 @@ table tr td {
   overflow-wrap: break-word !important;
 }
 
+
+table tr.optrow:focus-visible,
 table tr.optrow:hover {
-  background-color: #e9e9e9 !important;
+  background-color: #d0d5d9 !important;
+  outline: 0px solid black;
 }
 
 table tr.optrow {
@@ -63,8 +66,10 @@ table tr.optrow {
     border-top: 1px solid #38383d !important;
   }
 
+  table tr.optrow:focus-visible,
   table tr.optrow:hover {
-    background-color: #767676 !important;
+    background-color: #3d3d3d !important;
+    outline: 0px solid black;
   }
 
   .table > thead > tr > th {
