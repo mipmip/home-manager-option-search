@@ -14,7 +14,7 @@ var rebuildAndRerunSearch = function() {
 
 var docOnload = function(){
   const urlParams = new URLSearchParams(window.location.search);
-  const query = urlParams.get('query');
+  const query = urlParams.get('query') ?? '';
   searchInput.value = query;
   searchOptions(query);
 
