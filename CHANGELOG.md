@@ -8,6 +8,7 @@
 - native options export
 - improve example and descriptions layout
 - move to extranix.com
+- prepare ethical ads
 
 ## Version 1.4
 
