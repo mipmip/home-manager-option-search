@@ -30,10 +30,38 @@ table tr.optrow {
   padding:2px;
 }
 
+#eadiv {
+  position: fixed;
+  top: 105px;
+  right: 10px;
+  width: 250px;
+}
 
+#searchInput {
+  width: 80%;
 
+}
 
+@media only screen and (max-width: 1426px) {
+
+  .container {
+    width: 55em;
+  }
+}
+@media only screen and (max-width: 1326px) {
+
+  .container {
+    width: 40em;
+  }
+}
 @media only screen and (max-width: 1026px) {
+
+  .container {
+    width: 30em;
+  }
+
+
+
   body {
     font-size: 130%;
   }
@@ -111,5 +139,18 @@ table tr.optrow {
   pre {
     color: #f5f5f5;
     background-color: #333;
+  }
+}
+
+
+@media only screen and (max-width: 826px) {
+
+  #eadiv {
+
+    display: none;
+  }
+
+  .container {
+    width: 30em;
   }
 }
