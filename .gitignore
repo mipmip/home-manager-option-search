@@ -2,3 +2,4 @@
 .nix-gems
 .bundle
 result
+data/hm-options*

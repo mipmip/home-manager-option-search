@@ -26,6 +26,9 @@ jobs:
       - name: master-options
         run: ./scripts/build_hm_options.sh
 
+      - name: remove gitignore
+        run: rm .gitignore
+
       #      - name: master-options
       #        env:
       #          RELEASE: release-23.11
@@ -45,4 +48,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: pages-${{ github.ref_name }}
           publish_dir: .
