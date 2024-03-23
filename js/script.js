@@ -9,7 +9,7 @@ var modalBody = document.getElementById('myModalBody');
 
 var rebuildAndRerunSearch = function() {
   rebuildSearchIndex();
-  searchOptions();
+  searchOptions('');
 };
 
 var docOnload = function(){
