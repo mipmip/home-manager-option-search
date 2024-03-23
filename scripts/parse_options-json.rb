@@ -8,6 +8,8 @@ if not ENV['HM_RELEASE']
   ENV['HM_RELEASE'] = "master"
 end
 
+p ENV['HM_RELEASE']
+
 in_file = File.read("./result/share/doc/home-manager/options.json")
 parsed = JSON.parse(in_file)
 

@@ -13,8 +13,10 @@ var rebuildAndRerunSearch = function() {
 };
 
 var docOnload = function(){
+
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get('query') ?? '';
+
   searchInput.value = query;
   searchOptions(query);
 
@@ -47,6 +49,7 @@ var indexedOptionsTableHeader = document.getElementById('indexedOptionsTableHead
 var lastUpdateElement = document.getElementById('lastUpdateElement');
 var indexedOptionsTBody = indexedOptionsTable.tBodies[0];
 var searchInput = document.getElementById('searchInput');
+var releaseSelect = document.getElementById('releaseSelect');
 var optionCountBadge = document.getElementById('optionCountBadge');
 
 var updateLastUpdate = function(lastUpdate) {
@@ -148,10 +151,12 @@ var updateOptionCountAndTable = function() {
   }
 };
 
-var setSearchQueryToUrlParam = function(query) {
+var newUrl = '';
+
+var setSearchQueryToUrlParam = function(query,release) {
   const urlParams = new URLSearchParams();
   urlParams.set('query', query);
-  const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+  newUrl = `${window.location.pathname}?${urlParams.toString()}&release=${release}`;
   window.history.replaceState({}, '', newUrl);
 };
 
@@ -207,15 +212,41 @@ const SEARCH_INPUT_DEBOUNCE_MS = 100;
 
 let debounceTimer;
 
-searchInput.oninput = function() {
-  clearTimeout(debounceTimer);
 
+function newSearch(){
+  clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
+
     const query = searchInput.value;
-    setSearchQueryToUrlParam(query);
+    const release = releaseSelect.selectedOptions[0].value;
+
+    setSearchQueryToUrlParam(query, release);
     searchOptions(query);
+
   }, SEARCH_INPUT_DEBOUNCE_MS);
+}
+
+searchInput.oninput = function() {
+  newSearch();
 };
+
+releaseSelect.onchange = function(){
+
+    const query = searchInput.value;
+    const release = releaseSelect.selectedOptions[0].value;
+
+    setSearchQueryToUrlParam(query, release);
+
+    //window.location.reload(false);
+
+   window.location.replace(newUrl);
+
+  //newSearch();
+
+  //var release = releaseSelect.selectedOptions[0].value;
+  //xmlhttp.open('GET', 'data/hm-options-'+release+'.json', true);
+  //xmlhttp.send();
+}
 
 var updateOptionCount = function(numOptions) {
   optionCountBadge.innerText = numOptions + ' options';
@@ -251,5 +282,9 @@ xmlhttp.onreadystatechange = function() {
   }
 }
 
-xmlhttp.open('GET', 'data/hm-options-master.json', true);
+const urlParams = new URLSearchParams(window.location.search);
+const release = urlParams.get('release') ?? 'master';
+document.getElementById('releaseSelect').value = release;
+
+xmlhttp.open('GET', 'data/hm-options-'+release+'.json', true);
 xmlhttp.send();
