@@ -9,12 +9,14 @@ var modalBody = document.getElementById('myModalBody');
 
 var rebuildAndRerunSearch = function() {
   rebuildSearchIndex();
-  searchOptions();
+  searchOptions('');
 };
 
 var docOnload = function(){
+
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get('query') ?? '';
+
   searchInput.value = query;
   searchOptions(query);
 
@@ -47,6 +49,7 @@ var indexedOptionsTableHeader = document.getElementById('indexedOptionsTableHead
 var lastUpdateElement = document.getElementById('lastUpdateElement');
 var indexedOptionsTBody = indexedOptionsTable.tBodies[0];
 var searchInput = document.getElementById('searchInput');
+var releaseSelect = document.getElementById('releaseSelect');
 var optionCountBadge = document.getElementById('optionCountBadge');
 
 var updateLastUpdate = function(lastUpdate) {
@@ -105,21 +108,37 @@ var updateOptionsTable = function(options) {
   }
 };
 
+function parseDescription(text){
+
+  text = text.replace(/<https(\s*([^>]*))/gi ,'<a href="https$1">&lt;https$1</a>');
+  text = text.replace(/\[\]\(#opt-(\s*([^)]*))/gi ,'<strong>$1</strong>').replace(/\)/gi,'');
+  //[](#opt-wayland.windowManager.hyprland.plugins)
+  text = text.replace(/\{var\}(\s*([^\n]*))/gi ,'<strong>$1</strong>').replace(/`/gi,'')
+  text = text.replace(/:::\ \{\.note\}(\s*([^:::]*))/gi ,'<div class="alert alert-info" role="alert">$1</div>').replace(/:::/,'').replace(/\n/g, '<br />')
+  return text;
+}
+
 var expandOption = function(el){
 
   modalTitle.innerHTML = currentSet[el].title;
 
-  var elDesc = "<h5 style='margin:1em 0 0 0'>Description</h5><div>" + currentSet[el].description + "</div>";
+  //console.log(currentSet[el].description.replace(/:::\ \{\.note\}(\s*([^:::]*))/gi ,'<div class="alert alert-info" role="alert">$1</div>').replace(/:::/,''));
+
+  var elDesc = "<h5 style='margin:1em 0 0 0'>Description</h5><div>" + parseDescription(currentSet[el].description) + "</div>";
   var elType = "<h5 style='margin:1em 0 0 0'>Type</h5><div>" + currentSet[el].type + "</div>";
-  var elNote = ( currentSet[el].note == "" ? "": "<h5 style='margin:1em 0 0 0'>Note</h5><div>" + currentSet[el].note + "</div>");
+  //var elNote = ( currentSet[el].note == "" ? "": "<h5 style='margin:1em 0 0 0'>Note</h5><div>" + currentSet[el].note + "</div>");
   var elDefault = "<h5 style='margin:1em 0 0 0'>Default</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].default + "</pre></div>";
   var elExample = ( currentSet[el].example == "" ? "" : "<h5 style='margin:1em 0 0 0'>Example</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].example + "</pre></div>");
 
-  var declared_by_str = currentSet[el].declared_by;
+  //var declared_by_str = currentSet[el].declarations[0].name;
+  //console.log(currentSet[el].declarations[0].name);
+  var declared_by_str;
+  if(currentSet[el].declarations && currentSet[el].declarations.length >0 && currentSet[el].declarations[0].name){
+    declared_by_str = '<a href="'+currentSet[el].declarations[0].url+'">'+currentSet[el].declarations[0].name.replace(/</,'&lt;').replace(/>/,'&gt;')+'</a>';
+  }
 
   var elDeclaredBy = "<h5 style='margin:1em 0 0 0'>Declared by</h5><div>" + declared_by_str+ "</div>";
-  modalBody.innerHTML = elDesc + elNote + elType + elDefault + elExample + elDeclaredBy;
-
+  modalBody.innerHTML = elDesc + elType + elDefault + elExample + elDeclaredBy;
 
   $('#myModal').modal('show')
 }
@@ -137,17 +156,19 @@ var updateOptionCountAndTable = function() {
   }
 };
 
-var setSearchQueryToUrlParam = function(query) {
+var newUrl = '';
+
+var setSearchQueryToUrlParam = function(query,release) {
   const urlParams = new URLSearchParams();
   urlParams.set('query', query);
-  const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+  newUrl = `${window.location.pathname}?${urlParams.toString()}&release=${release}`;
   window.history.replaceState({}, '', newUrl);
 };
 
 var searchOptions = function(query) {
   results = search.search(query);
 
-  // Performance optimization: skip ordering if query is a single character 
+  // Performance optimization: skip ordering if query is a single character
   if (query.length > 1) {
     // Split terms by non-alphanumeric chars
     const terms = query.split(/[^A-Za-z0-9]/);
@@ -179,12 +200,12 @@ var searchOptions = function(query) {
         if (bIndex == -1) return -1;
         if (aIndex !== bIndex) return aIndex - bIndex
 
-        // Increment lastIndex by found index and term length, to sort based 
+        // Increment lastIndex by found index and term length, to sort based
         // on remaining string.
         lastIndex += aIndex + term.length;
       }
 
-      // Default to alphabetical order otherwise 
+      // Default to alphabetical order otherwise
       return aConcat.localeCompare(bConcat);
     });
   }
@@ -196,15 +217,41 @@ const SEARCH_INPUT_DEBOUNCE_MS = 100;
 
 let debounceTimer;
 
-searchInput.oninput = function() {
-  clearTimeout(debounceTimer);
 
+function newSearch(){
+  clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
+
     const query = searchInput.value;
-    setSearchQueryToUrlParam(query);
+    const release = releaseSelect.selectedOptions[0].value;
+
+    setSearchQueryToUrlParam(query, release);
     searchOptions(query);
+
   }, SEARCH_INPUT_DEBOUNCE_MS);
+}
+
+searchInput.oninput = function() {
+  newSearch();
 };
+
+releaseSelect.onchange = function(){
+
+    const query = searchInput.value;
+    const release = releaseSelect.selectedOptions[0].value;
+
+    setSearchQueryToUrlParam(query, release);
+
+    //window.location.reload(false);
+
+   window.location.replace(newUrl);
+
+  //newSearch();
+
+  //var release = releaseSelect.selectedOptions[0].value;
+  //xmlhttp.open('GET', 'data/hm-options-'+release+'.json', true);
+  //xmlhttp.send();
+}
 
 var updateOptionCount = function(numOptions) {
   optionCountBadge.innerText = numOptions + ' options';
@@ -237,9 +284,12 @@ xmlhttp.onreadystatechange = function() {
     if(searchInput.value.trim() ==""){
       updateOptionsTable(allOptions);
     }
-
-
   }
 }
-xmlhttp.open('GET', 'data/options.json', true);
+
+const urlParams = new URLSearchParams(window.location.search);
+const release = urlParams.get('release') ?? 'master';
+document.getElementById('releaseSelect').value = release;
+
+xmlhttp.open('GET', 'data/hm-options-'+release+'.json', true);
 xmlhttp.send();

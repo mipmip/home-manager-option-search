@@ -5,6 +5,9 @@
 - keyboard (tab) navigation (thanks to github.com/hallundbaek)
 - better result sorting (thanks to github.com/hallundbaek)
 - style improvements
+- native options export
+- improve example and descriptions layout
+- move to extranix.com
 
 ## Version 1.4
 

@@ -63,7 +63,7 @@
         </div>
       </div>
 
-      <div id="searchform" xstyle="background-color: white;top:54px;position:sticky;>
+      <div id="searchform" xstyle="background-color: white;top:54px;position:sticky;">
         <form method="get" action="?" onSubmit="searchEnter()">
           <div class="form-group">
             <label for="searchInput">
@@ -73,11 +73,26 @@
 
             <input class="form-control" type="search" id="searchInput" autofocus="autofocus" placeholder="Search.. e.g. vim">
 
+
           </div>
           <div class="form-group">
+            <label for="release">
+              Home Manager release
+            </label>
+            <select id="releaseSelect">
+              <option value="master">unstable</option>
+              <option value="release-23.11">23.11</option>
+              <option value="release-23.05">23.05</option>
+            <!--
+              <option value="release-22.11">22.11</option>
+              <option value="release-22.05">22.05</option>
+            -->
+            </select>
+          <!--
             <label for="advcheck">
               search options
-              <input id="advcheck" type="checkbox" data-toggle="collapse" data-target="#advanced" /> 
+              <input id="advcheck" type="checkbox" data-toggle="collapse" data-target="#advanced" />
+          -->
           </div>
         </form>
 
