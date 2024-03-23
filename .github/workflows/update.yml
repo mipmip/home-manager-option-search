@@ -12,14 +12,6 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      #      - uses: cachix/install-nix-action@v25
-        #        with:
-#          nix_path: nixpkgs=channel:nixos-unstable
-#     - uses: cachix/cachix-action@v13
-#       with:
-#         name: nix-community
-#         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-        #
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
@@ -29,10 +21,10 @@ jobs:
       - name: remove gitignore
         run: rm .gitignore
 
-      #      - name: master-options
-      #        env:
-      #          RELEASE: release-23.11
-      #        run: ./scripts/build_hm_options.sh
+      - name: master-options
+        env:
+          RELEASE: release-23.11
+        run: ./scripts/build_hm_options.sh
       #
       #      - name: master-options
       #        env:
