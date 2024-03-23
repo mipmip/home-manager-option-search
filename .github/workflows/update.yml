@@ -12,33 +12,34 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - uses: cachix/install-nix-action@v23
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
+      #      - uses: cachix/install-nix-action@v25
+        #        with:
+#          nix_path: nixpkgs=channel:nixos-unstable
 #     - uses: cachix/cachix-action@v13
 #       with:
 #         name: nix-community
 #         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+        #
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - run: git clone https://github.com/nix-community/home-manager.git
-      - run: |
-        #nix-build -A docs.html
-          nix-build -A docs.json
+      - name: master-options
+        run: ./scripts/build_hm_options.sh
 
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.3
-          #bundler-cache: true
-
-      - run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-
-      - run: |
-          rm -v data/options.json
-          ruby scripts/parse_appendix.rb
-          ls -al data/options.json
-          cat data/options.json | jq ".last_update"
+      #      - name: master-options
+      #        env:
+      #          RELEASE: release-23.11
+      #        run: ./scripts/build_hm_options.sh
+      #
+      #      - name: master-options
+      #        env:
+      #          RELEASE: release-22.11
+      #        run: ./scripts/build_hm_options.sh
+      #
+      #      - name: master-options
+      #        env:
+      #          RELEASE: release-22.05
+      #        run: ./scripts/build_hm_options.sh
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
