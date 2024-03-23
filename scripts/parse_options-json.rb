@@ -1,22 +1,34 @@
-#require 'open-uri'
-#require 'nokogiri'
+# Copyright 2024 Pim Snel <post@pimsnel.com
+# License: MIT
+
 require 'json'
 require 'pp'
 
 if not ENV['HM_RELEASE']
   ENV['HM_RELEASE'] = "master"
 end
-#p ENV['HM_RELEASE']
 
 in_file = File.read("./result/share/doc/home-manager/options.json")
 parsed = JSON.parse(in_file)
 
 options_arr = []
 parsed.each do | name, val |
+
   next if name == '_module.args'
+
   val['title'] = name
-  val['example'] = val['example']['text'] if val.key? "example"
-  val['default'] = val['default']['text']if val.key? "default"
+
+  if val.key? "example"
+    val['example'] = val['example']['text']
+  else
+    val['example'] = ""
+  end
+
+  if val.key? "default"
+    val['default'] = val['default']['text']
+  else
+    val['default'] = ""
+  end
 
   options_arr << val
 end

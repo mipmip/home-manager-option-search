@@ -158,7 +158,7 @@ var setSearchQueryToUrlParam = function(query) {
 var searchOptions = function(query) {
   results = search.search(query);
 
-  // Performance optimization: skip ordering if query is a single character 
+  // Performance optimization: skip ordering if query is a single character
   if (query.length > 1) {
     // Split terms by non-alphanumeric chars
     const terms = query.split(/[^A-Za-z0-9]/);
@@ -190,12 +190,12 @@ var searchOptions = function(query) {
         if (bIndex == -1) return -1;
         if (aIndex !== bIndex) return aIndex - bIndex
 
-        // Increment lastIndex by found index and term length, to sort based 
+        // Increment lastIndex by found index and term length, to sort based
         // on remaining string.
         lastIndex += aIndex + term.length;
       }
 
-      // Default to alphabetical order otherwise 
+      // Default to alphabetical order otherwise
       return aConcat.localeCompare(bConcat);
     });
   }
