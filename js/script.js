@@ -111,8 +111,9 @@ var updateOptionsTable = function(options) {
 function parseDescription(text){
 
   text = text.replace(/<https(\s*([^>]*))/gi ,'<a href="https$1">&lt;https$1</a>');
-  //text = text.replace(/\[\]\#((\s*([^)]*))/gi ,'<pre>$1</pre>');
+  text = text.replace(/\[\]\(#opt-(\s*([^)]*))/gi ,'<strong>$1</strong>').replace(/\)/gi,'');
   //[](#opt-wayland.windowManager.hyprland.plugins)
+  text = text.replace(/\{var\}(\s*([^\n]*))/gi ,'<strong>$1</strong>').replace(/`/gi,'')
   text = text.replace(/:::\ \{\.note\}(\s*([^:::]*))/gi ,'<div class="alert alert-info" role="alert">$1</div>').replace(/:::/,'').replace(/\n/g, '<br />')
   return text;
 }
@@ -130,8 +131,12 @@ var expandOption = function(el){
   var elExample = ( currentSet[el].example == "" ? "" : "<h5 style='margin:1em 0 0 0'>Example</h5><div><pre style='margin-top:0.5em'>" + currentSet[el].example + "</pre></div>");
 
   //var declared_by_str = currentSet[el].declarations[0].name;
-  console.log(currentSet[el].declarations[0].name);
-  var declared_by_str = '<a href="'+currentSet[el].declarations[0].url+'">'+currentSet[el].declarations[0].name.replace(/</,'&lt;').replace(/>/,'&gt;')+'</a>';
+  //console.log(currentSet[el].declarations[0].name);
+  var declared_by_str;
+  if(currentSet[el].declarations && currentSet[el].declarations.length >0 && currentSet[el].declarations[0].name){
+    declared_by_str = '<a href="'+currentSet[el].declarations[0].url+'">'+currentSet[el].declarations[0].name.replace(/</,'&lt;').replace(/>/,'&gt;')+'</a>';
+  }
+
   var elDeclaredBy = "<h5 style='margin:1em 0 0 0'>Declared by</h5><div>" + declared_by_str+ "</div>";
   modalBody.innerHTML = elDesc + elType + elDefault + elExample + elDeclaredBy;
 
