@@ -21,9 +21,9 @@ jobs:
       - name: update gitignore
         run: echo result > .gitignore
 
-      - name: master-options
+      - name: release-options
         env:
-          RELEASE: release-23.11
+          HM_RELEASE: release-23.11
         run: ./scripts/build_hm_options.sh
       #
       #      - name: master-options
