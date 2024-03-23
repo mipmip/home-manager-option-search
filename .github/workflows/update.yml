@@ -18,8 +18,8 @@ jobs:
       - name: master-options
         run: ./scripts/build_hm_options.sh
 
-      - name: remove gitignore
-        run: rm .gitignore
+      - name: update gitignore
+        run: echo result > .gitignore
 
       - name: master-options
         env:
