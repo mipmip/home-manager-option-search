@@ -2,4 +2,5 @@
 .nix-gems
 .bundle
 result
-data/hm-options*
+data/hm-options-release-23.11.json
+data/hm-options-master.json

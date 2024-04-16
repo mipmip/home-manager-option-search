@@ -44,7 +44,7 @@ parsed.each do | name, val |
   next if name == '_module.args'
 
   val['title'] = name
-  val = parseVal2211(val)
+  val = parseVal(val)
 
   options_arr << val
 end
