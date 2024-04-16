@@ -31,14 +31,11 @@ def getValFor(val, key)
   end
 end
 
-def parseVal2211(val)
+def parseVal(val)
   val['example'] = getValFor(val, 'example')
   val['default'] = getValFor(val, 'default')
 
   val
-end
-
-def parseVal2305(val)
 end
 
 options_arr = []
