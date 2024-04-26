@@ -4,3 +4,4 @@
 result
 data/hm-options-release-23.11.json
 data/hm-options-master.json
+.hugo_build.lock
