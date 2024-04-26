@@ -21,7 +21,6 @@ var docOnload = function(){
   searchOptions(query);
 
   $("#advcheck").prop("checked", false);
-//  $("#advcheck").removeAttr("checked");
 }
 
 indexOnDescriptionCheckbox.onchange = rebuildAndRerunSearch;
@@ -193,8 +192,8 @@ var searchOptions = function(query) {
         // No reason to index beyond result of lastIndex +aIndex + term.length,
         // as a would come first in that case.
         const bIndex = bConcat
-          .slice(lastIndex, lastIndex + aIndex + term.length)
-          .indexOf(term);
+        .slice(lastIndex, lastIndex + aIndex + term.length)
+        .indexOf(term);
 
         // Not found in b, a must come first
         if (bIndex == -1) return -1;
@@ -237,20 +236,12 @@ searchInput.oninput = function() {
 
 releaseSelect.onchange = function(){
 
-    const query = searchInput.value;
-    const release = releaseSelect.selectedOptions[0].value;
+  const query = searchInput.value;
+  const release = releaseSelect.selectedOptions[0].value;
 
-    setSearchQueryToUrlParam(query, release);
+  setSearchQueryToUrlParam(query, release);
 
-    //window.location.reload(false);
-
-   window.location.replace(newUrl);
-
-  //newSearch();
-
-  //var release = releaseSelect.selectedOptions[0].value;
-  //xmlhttp.open('GET', 'data/hm-options-'+release+'.json', true);
-  //xmlhttp.send();
+  window.location.replace(newUrl);
 }
 
 var updateOptionCount = function(numOptions) {
@@ -291,5 +282,5 @@ const urlParams = new URLSearchParams(window.location.search);
 const release = urlParams.get('release') ?? 'master';
 document.getElementById('releaseSelect').value = release;
 
-xmlhttp.open('GET', 'data/hm-options-'+release+'.json', true);
+xmlhttp.open('GET', 'data/options-'+release+'.json', true);
 xmlhttp.send();

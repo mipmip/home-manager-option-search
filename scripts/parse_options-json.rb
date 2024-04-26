@@ -1,4 +1,4 @@
-# Copyright 2024 Pim Snel <post@pimsnel.com
+# Copyright 2024 Pim Snel <post@pimsnel.com>
 # License: MIT
 
 require 'json'
@@ -54,7 +54,7 @@ time = Time.new
 outobj["last_update"] = time.utc.strftime("%B %d, %Y at %k:%M UTC")
 outobj["options"] = options_arr
 
-filename = "static/data/hm-options-#{ENV['HM_RELEASE']}.json"
+filename = "static/data/options-#{ENV['HM_RELEASE']}.json"
 
 File.open(filename,"w") do |f|
     f.write(outobj.to_json)

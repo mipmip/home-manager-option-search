@@ -2,46 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Home Manager - Option Search</title>
+    <title>{{ .Site.Title }}</title>
 
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="search" type="application/opensearchdescription+xml" title="Home Manager - Option Search" href="opensearch.xml" />
+
+    <meta name="description" content="{{ with .Params.Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+    <meta name="keywords" content="{{ with .Params.keywords }}{{ . }}{{ end }}">
+
+    <link rel="search" type="application/opensearchdescription+xml" title="{{ .Site.Title}}" href="opensearch.xml" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script async src="https://umami.pimsnel.com/script.js" data-website-id="8e970d59-b517-4ba6-9b92-207e7dbdb4b1"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="css/nucleus.css" rel="stylesheet">
     <link href="css/style-nix.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style-q2.css">
-    <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+
+    {{ with .Site.Params.custom_head_scripts }}{{ . | safeHTML }}{{ end }}
+
   </head>
   <body>
 
-    <div id="eadiv" data-ea-publisher="extranixcom" data-ea-type="text"></div>
+    {{ with .Site.Params.custom_header_tags }}{{ . | safeHTML }}{{ end }}
 
     <header>
       <div id="lastUpdateElement" style="position:absolute; line-height: 11px; right: 37px;top:59px;"></div>
       <div class="logo">
-        <a class="baselink" href="./"> <img src="images/home-manager-option-search2.png"></a>
+        <a class="baselink" href="./">
+          {{with .Site.Params.logo}}<img src="{{.}}">{{else}}{{.Site.Title}} {{end}}</a>
       </div>
       <nav class="shortcuts">
-        <li style="padding-top:10px;">
-          <a href="https://nix-community.github.io/home-manager/" rel="noopener">
-            <i class="fa fa-book"></i>&nbsp;<label>HM&nbsp;Documentation</label>
-          </a>
-        </li>
 
-        <li  style="padding-top:10px;">
-          <a href="https://github.com/mipmip/home-manager-option-search" rel="noopener">
-            <i class="fa fa-github"></i> <label>Source</label>
-          </a>
-        </li>
+        {{ range .Site.Params.main_menu }}
+        <li style="padding-top:10px;"><a href="{{ .url }}" ><i class="{{ .icon_class }}"></i> <label>{{ .name | safeHTML }}</label></a></li>
+        {{ end }}
 
+        {{with .Site.Params.github }}
         <li style="margin-left:9px;padding-top:14px;">
-          <iframe style="width:51px;" src="https://ghbtns.com/github-btn.html?user=mipmip&repo=home-manager-option-search&type=star&count=false&text=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user={{ .user}}&repo={{.repo}}&type=star&count={{.show_count}}&text=true"
+            style="width:101px;"
+            frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>
         </li>
+        {{end}}
       </nav>
 
     </header>
@@ -156,18 +163,14 @@
     <footer class=" navbar-fixed-bottom" >
       <div >
         <p>
-        Powered by the <a href="https://nix-community.org/">Nix Community</a> |
-        <a href="https://github.com/mipmip/home-manager-option-search#credits">Credits</a> |
-        <a href="https://nix-community.github.io/home-manager/">Home Manager Documentation</a>
+          {{ with .Site.Params.footer_credits_line }}{{ . | safeHTML }}{{ end }}
         </p>
         <p>
-        Made with ❤️ by <a href="https://github.com/mipmip">Pim Snel</a>
+          {{ with .Site.Params.footer_copyright_line }}{{ . | safeHTML }}{{ end }}
         </p>
       </div>
     </footer>
 
-    <!--<script type="text/javascript" src="https://rawgit.com/kristopolous/Porter-Stemmer/master/PorterStemmer1980.min.js"></script>-->
-    <!--<script type="text/javascript" src="https://unpkg.com/js-search@1.3.7/dist/umd/js-search.min.js"></script>-->
     <script type="text/javascript" src="https://unpkg.com/js-search@2.0.1/dist/umd/js-search.min.js"></script>
     <script type="text/javascript" src="js/script.js?version=2024-03-23"></script>
   </body>

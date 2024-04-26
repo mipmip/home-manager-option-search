@@ -2,6 +2,7 @@
 
 ## Next version
 
+- hugofication
 - keyboard (tab) navigation (thanks to github.com/hallundbaek)
 - better result sorting (thanks to github.com/hallundbaek)
 - style improvements

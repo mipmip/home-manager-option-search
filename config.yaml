@@ -2,3 +2,40 @@ baseURL: https://home-manager-options.extranix.com/
 languageCode: en-us
 title: Home Manager - Option Search
 theme: extranix-options-search
+
+params:
+  custom_head_scripts: |
+    <script async src="https://umami.pimsnel.com/script.js" data-website-id="8e970d59-b517-4ba6-9b92-207e7dbdb4b1"></script>
+    <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+
+  custom_header_tags: <div id="eadiv" data-ea-publisher="extranixcom" data-ea-type="text"></div>
+
+  footer_credits_line: |
+    Powered by the <a href="https://nix-community.org/">Nix Community</a> |
+    <a href="https://github.com/mipmip/home-manager-option-search#credits">Credits</a> |
+    <a href="https://nix-community.github.io/home-manager/">Home Manager Documentation</a>
+
+  footer_copyright_line: |
+    Made with ❤️ by <a href="https://github.com/mipmip">Pim Snel</a> - © 2022-2024
+
+  logo: images/home-manager-option-search2.png
+
+  github:
+    repo: home-manager-option-search
+    user: mipmip
+    show_count: true
+
+  main_menu:
+
+    - name: HM&nbsp;Documentation
+      url: https://nix-community.github.io/home-manager/
+      icon_class: fa fa-book
+
+    - name: Source
+      url: https://github.com/mipmip/home-manager-option-search
+      icon_class: fa fa-github
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
