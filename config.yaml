@@ -1,0 +1,4 @@
+baseURL: https://home-manager-options.extranix.com/
+languageCode: en-us
+title: Home Manager - Option Search
+theme: extranix-options-search
