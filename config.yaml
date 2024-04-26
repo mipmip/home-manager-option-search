@@ -5,7 +5,7 @@ theme: extranix-options-search
 
 params:
 
-  release_switch_title: Home Manage Release
+  release_switch_title: Home Manager Release
   releases:
     - name: unstable
       value: master
