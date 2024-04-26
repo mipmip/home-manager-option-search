@@ -56,9 +56,18 @@ header {
     text-decoration: none; }
   header .logo {
     min-width: 295px;
-    font-size: 100%; }
+    font-size: 100%;
+  }
+    header .logo a,
+    header .logo a:visited {
+      color:white;
+      font-size: 120%;
+      font-weight: bold;
+    }
+
     header .logo * {
-      vertical-align: middle; }
+      vertical-align: middle;
+    }
     header .logo img {
       height: 32px;
       margin-right: 0.5rem; }
@@ -192,7 +201,7 @@ article > aside {
 
 html,
 body {
-  height: 100%; 
+  height: 100%;
 }
 
 html {
@@ -770,7 +779,7 @@ table.nur-stats tr td{
 table {
     text-align: left;
       position: relative;
-        border-collapse: collapse; 
+        border-collapse: collapse;
       }
 th {
   background: white;
