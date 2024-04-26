@@ -10,7 +10,17 @@ jobs:
     name: parse options and create search
     steps:
 
+    steps:
       - uses: actions/checkout@v4
+
+      #      - name: Setup Hugo
+      #        uses: peaceiris/actions-hugo@v2
+      #        with:
+      #          hugo-version: '0.81.0'
+      #          extended: true
+      #
+      #      - name: Build
+      #        run: hugo --minify
 
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
@@ -26,9 +36,12 @@ jobs:
           HM_RELEASE: release-23.11
         run: ./scripts/build_hm_options.sh
 
+      - name: Build Hugo
+        run: nix run nixpkgs#hugo --minify
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: pages-${{ github.ref_name }}
-          publish_dir: .
+          publish_dir: ./public

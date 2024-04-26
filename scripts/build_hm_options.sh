@@ -10,6 +10,6 @@ fi
 echo "building Home Manager options from ${HM_RELEASE}"
 
 rm -Rf result
-nix build github:nix-community/home-manager/${HM_RELEASE}#docs-json --no-write-lock-file 
+nix build github:nix-community/home-manager/${HM_RELEASE}#docs-json --no-write-lock-file
 rm -f ./data/hm-options-${HM_RELEASE}.json
 ruby ./scripts/parse_options-json.rb
