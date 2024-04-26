@@ -1,0 +1,168 @@
+mark {
+    padding: 0;
+    background-color: #d9edf7;
+    color: #030;
+    padding: 2px;
+    margin: -2px;
+}
+table tr td {
+  overflow-wrap: break-word !important;
+}
+
+
+table tr.optrow:focus-visible,
+table tr.optrow:hover {
+  background-color: #d0d5d9 !important;
+  outline: 0px solid black;
+}
+
+table tr.optrow {
+  cursor: pointer;
+}
+
+#lastUpdateElement{
+  font-size: 10px;
+  color: #000;
+}
+
+#advanced {
+  background-color: #efefef;
+  padding:2px;
+}
+
+#eadiv {
+  position: fixed;
+  top: 105px;
+  right: 10px;
+  width: 250px;
+}
+
+#searchInput {
+  width: 80%;
+}
+
+.xcontainer {
+  padding-top: 70px;
+  margin-left: 70px;
+  margin-right: 260px;
+
+}
+
+@media only screen and (max-width: 1426px) {
+
+  .container {
+    width: 55em;
+  }
+}
+@media only screen and (max-width: 1326px) {
+
+  .container {
+    width: 40em;
+  }
+}
+@media only screen and (max-width: 1026px) {
+
+  .container {
+    width: 30em;
+  }
+
+
+
+  body {
+    font-size: 130%;
+  }
+  .form-control {
+    font-size: 120%;
+  }
+  #lastUpdateElement{
+    font-size: 12px;
+  }
+  .phonehide {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #fff;
+    background-color: #1e1e24;
+  }
+
+  select {
+    color: #000;
+  }
+
+  .table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #18181a;
+  }
+
+  table#indexedOptionsTable tr td{
+    border-top: 1px solid #38383d !important;
+  }
+
+  table tr.optrow:focus-visible,
+  table tr.optrow:hover {
+    background-color: #3d3d3d !important;
+    outline: 0px solid black;
+  }
+
+  .table > thead > tr > th {
+    border-bottom: 2px solid #38383d !important;
+  }
+
+  .form-control {
+    color: #dedede;
+    background-color: #060606;
+    border: 1px solid #38383d;
+  }
+  #lastUpdateElement{
+    font-size: 10px;
+    color: #fff;
+  }
+  #advanced {
+    background-color: #232327;
+    padding:2px;
+  }
+
+  footer {
+    color: #666;
+    background-color: #28365e;
+    font-size: smaller;
+    border-top: 1px solid #a3d3f6;
+    border-top-color: rgb(163, 211, 246);
+  }
+  .modal-content {
+    background-color: #28365e;
+  }
+
+  footer {
+    color:#ccc9c9;
+  }
+  a, a:visited {
+    color: #7196d9;
+  }
+
+  pre {
+    color: #f5f5f5;
+    background-color: #333;
+  }
+}
+
+
+@media only screen and (max-width: 826px) {
+
+  #eadiv {
+
+    display: none;
+  }
+  .xcontainer {
+    margin-right: 30px;
+    margin-left: 30px;
+
+  }
+
+
+  .container {
+    width: 30em;
+  }
+}
