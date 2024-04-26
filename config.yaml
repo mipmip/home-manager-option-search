@@ -36,7 +36,7 @@ params:
     repo: home-manager-option-search
     user: mipmip
     show_count: true
-    show_text: false
+    show_text: true
 
   main_menu:
 
