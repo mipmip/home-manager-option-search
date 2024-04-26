@@ -44,7 +44,7 @@
         {{with .Site.Params.github }}
         <li style="margin-left:9px;padding-top:14px;">
           <iframe
-            src="https://ghbtns.com/github-btn.html?user={{ .user}}&repo={{.repo}}&type=star&count={{.show_count}}&text=true"
+            src="https://ghbtns.com/github-btn.html?user={{ .user}}&repo={{.repo}}&type=star&count={{.show_count}}&text={{.show_text}}"
             style="width:101px;"
             frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>
         </li>
@@ -88,19 +88,13 @@
           </div>
           <div class="form-group">
             <label for="release">
-              Home Manager release
+              {{ .Site.Params.release_switch_title }}
             </label>
             <select id="releaseSelect">
-              <option value="master">unstable</option>
-              <option value="release-23.11">23.11</option>
-              <option value="release-23.05">23.05</option>
-              <option value="release-22.11">22.11</option>
+              {{ range .Site.Params.releases }}
+              <option value="{{.value}}">{{.name}}</option>
+            {{end}}
             </select>
-          <!--
-            <label for="advcheck">
-              search options
-              <input id="advcheck" type="checkbox" data-toggle="collapse" data-target="#advanced" />
-          -->
           </div>
         </form>
 

@@ -4,6 +4,18 @@ title: Home Manager - Option Search
 theme: extranix-options-search
 
 params:
+
+  release_switch_title: Home Manage Release
+  releases:
+    - name: unstable
+      value: master
+    - name: 23.11
+      value: release-23.11
+    - name: 23.05
+      value: release-23.05
+    - name: 22.11
+      value: release-22.11
+
   custom_head_scripts: |
     <script async src="https://umami.pimsnel.com/script.js" data-website-id="8e970d59-b517-4ba6-9b92-207e7dbdb4b1"></script>
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
@@ -24,6 +36,7 @@ params:
     repo: home-manager-option-search
     user: mipmip
     show_count: true
+    show_text: false
 
   main_menu:
 
