@@ -1,6 +1,14 @@
 # CHANGELOG
 
-## Next version
+## Version 1.6
+
+- fix behvaiour of enter key (thanks to github.com/ian-h-chamberlain)
+- default to stable release
+- improve build_and_parse_hm_options script
+- central stable version configuration
+- add 24.05 as latest stable version
+
+## Version 1.5
 
 - hugofication
 - keyboard (tab) navigation (thanks to github.com/hallundbaek)
