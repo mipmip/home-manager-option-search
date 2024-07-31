@@ -279,7 +279,10 @@ xmlhttp.onreadystatechange = function() {
 }
 
 const urlParams = new URLSearchParams(window.location.search);
-const release = urlParams.get('release') ?? 'master';
+
+const releaseCurrentStable = document.getElementById('release_current_stable').value;
+
+var release = urlParams.get('release') ?? releaseCurrentStable;
 document.getElementById('releaseSelect').value = release;
 
 xmlhttp.open('GET', 'data/options-'+release+'.json', true);
