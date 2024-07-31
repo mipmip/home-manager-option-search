@@ -5,16 +5,20 @@ theme: extranix-options-search
 
 params:
 
-  release_switch_title: Home Manager Release
+  release_current_stable: release-24.05
   releases:
     - name: unstable
       value: master
+    - name: 24.05 (stable)
+      value: release-24.05
     - name: 23.11
       value: release-23.11
     - name: 23.05
       value: release-23.05
     - name: 22.11
       value: release-22.11
+
+  release_switch_title: Home Manager Release
 
   custom_head_scripts: |
     <script async src="https://umami.pimsnel.com/script.js" data-website-id="8e970d59-b517-4ba6-9b92-207e7dbdb4b1"></script>

@@ -16,15 +16,15 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: extract-options-master (unstable)
-        run: ./scripts/build_hm_options.sh
+        run: ./scripts/build_and_parse_hm_options.rb
 
       - name: update gitignore
         run: echo result > .gitignore
 
-      - name: extract-options-release-23.11 (stable)
+      - name: extract-options-release-24.05 (stable)
         env:
-          HM_RELEASE: release-23.11
-        run: ./scripts/build_hm_options.sh
+          HM_RELEASE: release-24.05
+        run: ./scripts/build_and_parse_hm_options.rb
 
       - name: Build Hugo
         run: nix run nixpkgs#hugo -- --minify

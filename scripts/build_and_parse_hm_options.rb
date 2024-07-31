@@ -1,17 +1,11 @@
+#!/usr/bin/env ruby
+
 # Copyright 2024 Pim Snel <post@pimsnel.com>
 # License: MIT
 
 require 'json'
 require 'pp'
-
-if not ENV['HM_RELEASE']
-  ENV['HM_RELEASE'] = "master"
-end
-
-p ENV['HM_RELEASE']
-
-in_file = File.read("./result/share/doc/home-manager/options.json")
-parsed = JSON.parse(in_file)
+require 'yaml'
 
 def isLiteralExpression(val, key)
   if val.key? key and val[key].instance_of? Hash and val[key].key? "_type" and val[key]['_type'] == 'literalExpression'
@@ -38,6 +32,24 @@ def parseVal(val)
   val
 end
 
+in_file_conf = File.read("./config.yaml")
+config = YAML.load(in_file_conf)
+
+if not ENV['HM_RELEASE']
+  ENV['HM_RELEASE'] = "master"
+elsif ENV['HM_RELEASE'] == "stable"
+  ENV['HM_RELEASE'] = config['params']['release_current_stable']
+end
+
+puts "Cleanup and Building Home Manager options from #{ENV['HM_RELEASE']}"
+
+`rm -Rf result`
+`nix build github:nix-community/home-manager/${HM_RELEASE}#docs-json --no-write-lock-file`
+`rm -f ./data/options-${HM_RELEASE}.json`
+
+in_file = File.read("./result/share/doc/home-manager/options.json")
+parsed = JSON.parse(in_file)
+
 options_arr = []
 parsed.each do | name, val |
 
@@ -60,4 +72,4 @@ File.open(filename,"w") do |f|
     f.write(outobj.to_json)
 end
 
-print "Finished parsing home manager options."
+puts "Finished parsing home manager options."
