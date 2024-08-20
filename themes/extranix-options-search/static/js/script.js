@@ -52,7 +52,7 @@ var releaseSelect = document.getElementById('releaseSelect');
 var optionCountBadge = document.getElementById('optionCountBadge');
 
 var updateLastUpdate = function(lastUpdate) {
-  lastUpdateElement.innerHTML = 'Last update: '+ lastUpdate;
+  lastUpdateElement.textContent = 'Last update: '+ lastUpdate;
 };
 
 var updateOptionsTable = function(options) {
@@ -65,14 +65,14 @@ var updateOptionsTable = function(options) {
     var option = options[i];
 
     var titleColumn = document.createElement('td');
-    titleColumn.innerHTML = option.title;
+    titleColumn.textContent = option.title;
 
     var descriptionColumn = document.createElement('td');
-    descriptionColumn.innerHTML = option.description;
+    descriptionColumn.textContent = option.description;
     descriptionColumn.classList.add("phonehide");
 
     var typeColumn = document.createElement('td');
-    typeColumn.innerHTML = option.type;
+    typeColumn.textContent = option.type;
     typeColumn.classList.add("phonehide");
 
     var tableRow = document.createElement('tr');
@@ -119,7 +119,7 @@ function parseDescription(text){
 
 var expandOption = function(el){
 
-  modalTitle.innerHTML = currentSet[el].title;
+  modalTitle.textContent = currentSet[el].title;
 
   //console.log(currentSet[el].description.replace(/:::\ \{\.note\}(\s*([^:::]*))/gi ,'<div class="alert alert-info" role="alert">$1</div>').replace(/:::/,''));
 
