@@ -1,0 +1,3 @@
+[submodule "themes/extranix-options-search"]
+	path = themes/extranix-options-search
+	url = https://github.com/mipmip/hugo-theme-extranix-options-search
