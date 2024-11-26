@@ -16,7 +16,7 @@ Find [home manager](https://github.com/nix-community/home-manager) options quick
 After a new NixOS and Home Manager release, update the release info in the Hugo
 config:
 
-Edit `config.yml`, and update the following...
+Edit `config.yaml`, and update the following...
 
 ```yaml
 params:
