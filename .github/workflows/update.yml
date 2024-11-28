@@ -23,9 +23,9 @@ jobs:
       - name: update gitignore
         run: echo result > .gitignore
 
-      - name: extract-options-release-24.05 (stable)
+      - name: extract-options-release (stable)
         env:
-          HM_RELEASE: release-24.05
+          HM_RELEASE: stable
         run: ./scripts/build_and_parse_hm_options.rb
 
       - name: Build Hugo
