@@ -16,15 +16,17 @@ Find [home manager](https://github.com/nix-community/home-manager) options quick
 After a new NixOS and Home Manager release, update the release info in the Hugo
 config:
 
-Edit `config.yml`, and update the following...
+Edit `config.yaml`, and update the following...
 
 ```yaml
 params:
-  release_current_stable: release-24.05
+  release_current_stable: release-24.11
   releases:
     - name: unstable
       value: master
-    - name: 24.05 (stable)
+    - name: 24.11 (stable)
+      value: release-24.11
+    - name: 24.05
       value: release-24.05
     - name: 23.11
       value: release-23.11
